@@ -1,0 +1,681 @@
+anms@anms:~/Golang/sql_basics$ psql --host=localhost --dbname=usty --username=usty
+Password for user usty: 
+psql (14.5 (Ubuntu 14.5-1ubuntu1))
+Type "help" for help.
+
+usty=> \i innerjoin.sql
+DROP TABLE
+CREATE TABLE
+ id | name | place | mark | created_at 
+----+------+-------+------+------------
+(0 rows)
+
+COPY 4
+ id |   name    |  place   | mark |     created_at      
+----+-----------+----------+------+---------------------
+  1 | fazil     | nilambur |   67 | 2022-11-25 14:56:06
+  2 | sethu     | idukki   |   89 | 2022-11-25 14:56:06
+  3 | prashanth | palakkad |   87 | 2022-11-25 14:56:06
+  4 | ajal      | trichur  |   98 | 2022-11-25 14:56:06
+(4 rows)
+
+DROP TABLE
+CREATE TABLE
+ id | teacher 
+----+---------
+(0 rows)
+
+INSERT 0 5
+ id | teacher 
+----+---------
+  1 | dannie
+  2 | blassy
+  3 | aneesha
+  4 | yen
+  5 | elna
+(5 rows)
+
+ id |   name    |  place   | mark |     created_at      | id | teacher 
+----+-----------+----------+------+---------------------+----+---------
+  1 | fazil     | nilambur |   67 | 2022-11-25 14:56:06 |  1 | dannie
+  2 | sethu     | idukki   |   89 | 2022-11-25 14:56:06 |  2 | blassy
+  3 | prashanth | palakkad |   87 | 2022-11-25 14:56:06 |  3 | aneesha
+  4 | ajal      | trichur  |   98 | 2022-11-25 14:56:06 |  4 | yen
+(4 rows)
+
+ id |   name    |  place   | mark | teacher 
+----+-----------+----------+------+---------
+  1 | fazil     | nilambur |   67 | dannie
+  2 | sethu     | idukki   |   89 | blassy
+  3 | prashanth | palakkad |   87 | aneesha
+  4 | ajal      | trichur  |   98 | yen
+(4 rows)
+
+ id |   name    |  place   | mark | teacher 
+----+-----------+----------+------+---------
+  1 | fazil     | nilambur |   67 | dannie
+  2 | sethu     | idukki   |   89 | blassy
+  3 | prashanth | palakkad |   87 | aneesha
+  4 | ajal      | trichur  |   98 | yen
+(4 rows)
+
+ id |   name    |  place   | mark | teacher 
+----+-----------+----------+------+---------
+  1 | fazil     | nilambur |   67 | dannie
+  2 | sethu     | idukki   |   89 | blassy
+  3 | prashanth | palakkad |   87 | aneesha
+  4 | ajal      | trichur  |   98 | yen
+    |           |          |      | elna
+(5 rows)
+
+ id |   name    |  place   | mark | teacher 
+----+-----------+----------+------+---------
+  1 | fazil     | nilambur |   67 | dannie
+  2 | sethu     | idukki   |   89 | blassy
+  3 | prashanth | palakkad |   87 | aneesha
+  4 | ajal      | trichur  |   98 | yen
+    |           |          |      | elna
+(5 rows)
+
+ id | name | place | mark | teacher 
+----+------+-------+------+---------
+    |      |       |      | elna
+(1 row)
+
+usty=> 
+usty=> \i cascading.sql
+DROP TABLE
+CREATE TABLE
+ id | name | place | mark | created_at 
+----+------+-------+------+------------
+(0 rows)
+
+COPY 4
+usty=> \i cascading.sql
+DROP TABLE
+CREATE TABLE
+ id | name | place | mark | created_at 
+----+------+-------+------+------------
+(0 rows)
+
+COPY 4
+ id |   name    |  place   | mark |     created_at      
+----+-----------+----------+------+---------------------
+  1 | fazil     | nilambur |   67 | 2022-11-25 15:23:35
+  2 | sethu     | idukki   |   89 | 2022-11-25 15:23:35
+  3 | prashanth | palakkad |   87 | 2022-11-25 15:23:35
+  4 | ajal      | trichur  |   98 | 2022-11-25 15:23:35
+(4 rows)
+
+usty=> \i cascading.sql
+DROP TABLE
+CREATE TABLE
+ id | name | place | mark | created_at 
+----+------+-------+------+------------
+(0 rows)
+
+COPY 4
+ id |   name    |  place   | mark |     created_at      
+----+-----------+----------+------+---------------------
+  1 | fazil     | nilambur |   67 | 2022-11-25 15:34:59
+  2 | sethu     | idukki   |   89 | 2022-11-25 15:34:59
+  3 | prashanth | palakkad |   87 | 2022-11-25 15:34:59
+  4 | ajal      | trichur  |   98 | 2022-11-25 15:34:59
+(4 rows)
+
+DROP TABLE
+CREATE TABLE
+INSERT 0 6
+usty=> \i cascading.sql
+psql:cascading.sql:16: NOTICE:  drop cascades to constraint address_student_id_fkey on table address
+DROP TABLE
+CREATE TABLE
+ id | name | place | mark | created_at 
+----+------+-------+------+------------
+(0 rows)
+
+COPY 4
+ id |   name    |  place   | mark |     created_at      
+----+-----------+----------+------+---------------------
+  1 | fazil     | nilambur |   67 | 2022-11-25 15:35:53
+  2 | sethu     | idukki   |   89 | 2022-11-25 15:35:53
+  3 | prashanth | palakkad |   87 | 2022-11-25 15:35:53
+  4 | ajal      | trichur  |   98 | 2022-11-25 15:35:53
+(4 rows)
+
+DROP TABLE
+CREATE TABLE
+INSERT 0 6
+ id |   name   | student_id 
+----+----------+------------
+  1 | NILAMBUR |          1
+  2 | KOCHI    |          1
+  3 | PALAKKAD |          2
+  4 | CALICUT  |          3
+  5 | TVM      |          3
+  6 | KANNUR   |          4
+(6 rows)
+
+usty=> SELECT S.id,S.name,S.place,S.mark,A.name,A.student_id FROM student AS S INNER JOIN address AS A ON S.id=A.id;
+ id |   name    |  place   | mark |   name   | student_id 
+----+-----------+----------+------+----------+------------
+  1 | fazil     | nilambur |   67 | NILAMBUR |          1
+  2 | sethu     | idukki   |   89 | KOCHI    |          1
+  3 | prashanth | palakkad |   87 | PALAKKAD |          2
+  4 | ajal      | trichur  |   98 | CALICUT  |          3
+(4 rows)
+
+usty=> SELECT S.id,S.name,S.place,S.mark,A.name,A.student_id FROM student AS S INNER JOIN address;
+ERROR:  syntax error at or near ";"
+LINE 1: ...rk,A.name,A.student_id FROM student AS S INNER JOIN address;
+                                                                      ^
+usty=> SELECT S.id,S.name,S.place,S.mark,A.name,A.student_id FROM student AS S FULL OUTER JOIN address;
+ERROR:  syntax error at or near ";"
+LINE 1: ...name,A.student_id FROM student AS S FULL OUTER JOIN address;
+                                                                      ^
+usty=> SELECT S.id,S.name,S.place,S.mark,A.name,A.student_id FROM student AS S FULL OUTER JOIN address;
+ERROR:  syntax error at or near ";"
+LINE 1: ...name,A.student_id FROM student AS S FULL OUTER JOIN address;
+                                                                      ^
+usty=> SELECT S.id,S.name,S.place,S.mark,A.name,A.student_id FROM student AS S FULL OUTER JOIN address AS A ON S.id=A.id;
+ id |   name    |  place   | mark |   name   | student_id 
+----+-----------+----------+------+----------+------------
+  1 | fazil     | nilambur |   67 | NILAMBUR |          1
+  2 | sethu     | idukki   |   89 | KOCHI    |          1
+  3 | prashanth | palakkad |   87 | PALAKKAD |          2
+  4 | ajal      | trichur  |   98 | CALICUT  |          3
+    |           |          |      | TVM      |          3
+    |           |          |      | KANNUR   |          4
+(6 rows)
+
+usty=> SELECT S.id,S.name,S.place,S.mark,A.name,A.student_id FROM student AS S FULL OUTER JOIN address AS A ON S.id=A.student_id;
+ id |   name    |  place   | mark |   name   | student_id 
+----+-----------+----------+------+----------+------------
+  1 | fazil     | nilambur |   67 | NILAMBUR |          1
+  1 | fazil     | nilambur |   67 | KOCHI    |          1
+  2 | sethu     | idukki   |   89 | PALAKKAD |          2
+  3 | prashanth | palakkad |   87 | CALICUT  |          3
+  3 | prashanth | palakkad |   87 | TVM      |          3
+  4 | ajal      | trichur  |   98 | KANNUR   |          4
+(6 rows)
+
+usty=> \i cascading.sql
+psql:cascading.sql:16: NOTICE:  drop cascades to constraint address_student_id_fkey on table address
+DROP TABLE
+CREATE TABLE
+ id | name | place | mark | created_at 
+----+------+-------+------+------------
+(0 rows)
+
+COPY 4
+ id |   name    |  place   | mark |     created_at      
+----+-----------+----------+------+---------------------
+  1 | fazil     | nilambur |   67 | 2022-11-25 15:43:45
+  2 | sethu     | idukki   |   89 | 2022-11-25 15:43:45
+  3 | prashanth | palakkad |   87 | 2022-11-25 15:43:45
+  4 | ajal      | trichur  |   98 | 2022-11-25 15:43:45
+(4 rows)
+
+DROP TABLE
+CREATE TABLE
+INSERT 0 6
+ id |   name   | student_id 
+----+----------+------------
+  1 | NILAMBUR |          1
+  2 | KOCHI    |          1
+  3 | PALAKKAD |          2
+  4 | CALICUT  |          3
+  5 | TVM      |          3
+  6 | KANNUR   |          4
+(6 rows)
+
+usty=> SELECT S.id,S.name,S.place,S.mark,A.address,A.student_id FROM student AS S FULL OUTER JOIN address AS A ON S.id=A.student_id;
+ERROR:  column a.address does not exist
+LINE 1: SELECT S.id,S.name,S.place,S.mark,A.address,A.student_id FRO...
+                                          ^
+usty=> \i cascading.sql
+psql:cascading.sql:16: NOTICE:  drop cascades to constraint address_student_id_fkey on table address
+DROP TABLE
+CREATE TABLE
+ id | name | place | mark | created_at 
+----+------+-------+------+------------
+(0 rows)
+
+COPY 4
+ id |   name    |  place   | mark |     created_at      
+----+-----------+----------+------+---------------------
+  1 | fazil     | nilambur |   67 | 2022-11-25 15:44:13
+  2 | sethu     | idukki   |   89 | 2022-11-25 15:44:13
+  3 | prashanth | palakkad |   87 | 2022-11-25 15:44:13
+  4 | ajal      | trichur  |   98 | 2022-11-25 15:44:13
+(4 rows)
+
+DROP TABLE
+CREATE TABLE
+INSERT 0 6
+ id | address  | student_id 
+----+----------+------------
+  1 | NILAMBUR |          1
+  2 | KOCHI    |          1
+  3 | PALAKKAD |          2
+  4 | CALICUT  |          3
+  5 | TVM      |          3
+  6 | KANNUR   |          4
+(6 rows)
+
+usty=> SELECT S.id,S.name,S.place,S.mark,A.address,A.student_id FROM student AS S FULL OUTER JOIN address AS A ON S.id=A.student_id;
+ id |   name    |  place   | mark | address  | student_id 
+----+-----------+----------+------+----------+------------
+  1 | fazil     | nilambur |   67 | NILAMBUR |          1
+  1 | fazil     | nilambur |   67 | KOCHI    |          1
+  2 | sethu     | idukki   |   89 | PALAKKAD |          2
+  3 | prashanth | palakkad |   87 | CALICUT  |          3
+  3 | prashanth | palakkad |   87 | TVM      |          3
+  4 | ajal      | trichur  |   98 | KANNUR   |          4
+(6 rows)
+
+usty=> \i cascading.sql
+psql:cascading.sql:16: NOTICE:  drop cascades to constraint address_student_id_fkey on table address
+DROP TABLE
+CREATE TABLE
+ id | name | place | mark | created_at 
+----+------+-------+------+------------
+(0 rows)
+
+COPY 4
+ id |   name    |  place   | mark |     created_at      
+----+-----------+----------+------+---------------------
+  1 | fazil     | nilambur |   67 | 2022-11-25 16:59:08
+  2 | sethu     | idukki   |   89 | 2022-11-25 16:59:08
+  3 | prashanth | palakkad |   87 | 2022-11-25 16:59:08
+  4 | ajal      | trichur  |   98 | 2022-11-25 16:59:08
+(4 rows)
+
+DROP TABLE
+CREATE TABLE
+INSERT 0 6
+ id | address  | student_id 
+----+----------+------------
+  1 | NILAMBUR |          1
+  2 | KOCHI    |          1
+  3 | PALAKKAD |          2
+  4 | CALICUT  |          3
+  5 | TVM      |          3
+  6 | KANNUR   |          4
+(6 rows)
+
+usty=> SELECT S.id,S.name,S.place,S.mark,A.address,A.student_id FROM student AS S FULL OUTER JOIN address AS A ON S.id=A.student_id;
+ id |   name    |  place   | mark | address  | student_id 
+----+-----------+----------+------+----------+------------
+  1 | fazil     | nilambur |   67 | NILAMBUR |          1
+  1 | fazil     | nilambur |   67 | KOCHI    |          1
+  2 | sethu     | idukki   |   89 | PALAKKAD |          2
+  3 | prashanth | palakkad |   87 | CALICUT  |          3
+  3 | prashanth | palakkad |   87 | TVM      |          3
+  4 | ajal      | trichur  |   98 | KANNUR   |          4
+(6 rows)
+
+usty=> SELECT * FROM address
+usty-> ;
+ id | address  | student_id 
+----+----------+------------
+  1 | NILAMBUR |          1
+  2 | KOCHI    |          1
+  3 | PALAKKAD |          2
+  4 | CALICUT  |          3
+  5 | TVM      |          3
+  6 | KANNUR   |          4
+(6 rows)
+
+usty=> DELETE FROM address WHERE id=1;
+DELETE 1
+usty=> SELECT * FROM address
+;
+ id | address  | student_id 
+----+----------+------------
+  2 | KOCHI    |          1
+  3 | PALAKKAD |          2
+  4 | CALICUT  |          3
+  5 | TVM      |          3
+  6 | KANNUR   |          4
+(5 rows)
+
+usty=> \i cascading.sql
+psql:cascading.sql:16: NOTICE:  drop cascades to constraint address_student_id_fkey on table address
+DROP TABLE
+CREATE TABLE
+ id | name | place | mark | created_at 
+----+------+-------+------+------------
+(0 rows)
+
+COPY 4
+ id |   name    |  place   | mark |     created_at      
+----+-----------+----------+------+---------------------
+  1 | fazil     | nilambur |   67 | 2022-11-25 17:01:02
+  2 | sethu     | idukki   |   89 | 2022-11-25 17:01:02
+  3 | prashanth | palakkad |   87 | 2022-11-25 17:01:02
+  4 | ajal      | trichur  |   98 | 2022-11-25 17:01:02
+(4 rows)
+
+DROP TABLE
+CREATE TABLE
+INSERT 0 6
+ id | address  | student_id 
+----+----------+------------
+  1 | NILAMBUR |          1
+  2 | KOCHI    |          1
+  3 | PALAKKAD |          2
+  4 | CALICUT  |          3
+  5 | TVM      |          3
+  6 | KANNUR   |          4
+(6 rows)
+
+usty=> DELETE FROM student WHERE id=1;
+DELETE 1
+usty=> SELECT * FROM address
+;
+ id | address  | student_id 
+----+----------+------------
+  3 | PALAKKAD |          2
+  4 | CALICUT  |          3
+  5 | TVM      |          3
+  6 | KANNUR   |          4
+(4 rows)
+
+usty=> SELECT * FROM student;
+ id |   name    |  place   | mark |     created_at      
+----+-----------+----------+------+---------------------
+  2 | sethu     | idukki   |   89 | 2022-11-25 17:01:02
+  3 | prashanth | palakkad |   87 | 2022-11-25 17:01:02
+  4 | ajal      | trichur  |   98 | 2022-11-25 17:01:02
+(3 rows)
+
+usty=> SELECT S.id,S.name,S.place,S.mark,A.address,A.student_id FROM student AS S FULL OUTER JOIN address AS A ON S.id=A.student_id;
+ id |   name    |  place   | mark | address  | student_id 
+----+-----------+----------+------+----------+------------
+  2 | sethu     | idukki   |   89 | PALAKKAD |          2
+  3 | prashanth | palakkad |   87 | CALICUT  |          3
+  3 | prashanth | palakkad |   87 | TVM      |          3
+  4 | ajal      | trichur  |   98 | KANNUR   |          4
+(4 rows)
+
+usty=> \i cascading.sql
+psql:cascading.sql:16: NOTICE:  drop cascades to constraint address_student_id_fkey on table address
+DROP TABLE
+CREATE TABLE
+ id | name | place | mark | created_at 
+----+------+-------+------+------------
+(0 rows)
+
+COPY 4
+ id |   name    |  place   | mark |     created_at      
+----+-----------+----------+------+---------------------
+  1 | fazil     | nilambur |   67 | 2022-11-25 17:02:15
+  2 | sethu     | idukki   |   89 | 2022-11-25 17:02:15
+  3 | prashanth | palakkad |   87 | 2022-11-25 17:02:15
+  4 | ajal      | trichur  |   98 | 2022-11-25 17:02:15
+(4 rows)
+
+DROP TABLE
+CREATE TABLE
+INSERT 0 6
+ id | address  | student_id 
+----+----------+------------
+  1 | NILAMBUR |          1
+  2 | KOCHI    |          1
+  3 | PALAKKAD |          2
+  4 | CALICUT  |          3
+  5 | TVM      |          3
+  6 | KANNUR   |          4
+(6 rows)
+
+usty=> DELETE FROM address WHERE id=1;
+DELETE 1
+usty=> SELECT * FROM address;
+ id | address  | student_id 
+----+----------+------------
+  2 | KOCHI    |          1
+  3 | PALAKKAD |          2
+  4 | CALICUT  |          3
+  5 | TVM      |          3
+  6 | KANNUR   |          4
+(5 rows)
+
+usty=> SELECT * FROM student;
+ id |   name    |  place   | mark |     created_at      
+----+-----------+----------+------+---------------------
+  1 | fazil     | nilambur |   67 | 2022-11-25 17:02:15
+  2 | sethu     | idukki   |   89 | 2022-11-25 17:02:15
+  3 | prashanth | palakkad |   87 | 2022-11-25 17:02:15
+  4 | ajal      | trichur  |   98 | 2022-11-25 17:02:15
+(4 rows)
+
+usty=> SELECT S.id,S.name,S.place,S.mark,A.address,A.student_id FROM student AS S FULL OUTER JOIN address AS A ON S.id=A.student_id;
+ id |   name    |  place   | mark | address  | student_id 
+----+-----------+----------+------+----------+------------
+  1 | fazil     | nilambur |   67 | KOCHI    |          1
+  2 | sethu     | idukki   |   89 | PALAKKAD |          2
+  3 | prashanth | palakkad |   87 | CALICUT  |          3
+  3 | prashanth | palakkad |   87 | TVM      |          3
+  4 | ajal      | trichur  |   98 | KANNUR   |          4
+(5 rows)
+
+usty=> \i cascading.sql
+psql:cascading.sql:16: NOTICE:  drop cascades to constraint address_student_id_fkey on table address
+DROP TABLE
+CREATE TABLE
+ id | name | place | mark | created_at 
+----+------+-------+------+------------
+(0 rows)
+
+COPY 4
+ id |   name    |  place   | mark |     created_at      
+----+-----------+----------+------+---------------------
+  1 | fazil     | nilambur |   67 | 2022-11-25 17:03:27
+  2 | sethu     | idukki   |   89 | 2022-11-25 17:03:27
+  3 | prashanth | palakkad |   87 | 2022-11-25 17:03:27
+  4 | ajal      | trichur  |   98 | 2022-11-25 17:03:27
+(4 rows)
+
+DROP TABLE
+CREATE TABLE
+INSERT 0 6
+ id | address  | student_id 
+----+----------+------------
+  1 | NILAMBUR |          1
+  2 | KOCHI    |          1
+  3 | PALAKKAD |          2
+  4 | CALICUT  |          3
+  5 | TVM      |          3
+  6 | KANNUR   |          4
+(6 rows)
+
+usty=> DELETE FROM student WHERE id=1;
+DELETE 1
+usty=> SELECT * FROM student
+usty-> ;
+ id |   name    |  place   | mark |     created_at      
+----+-----------+----------+------+---------------------
+  2 | sethu     | idukki   |   89 | 2022-11-25 17:03:27
+  3 | prashanth | palakkad |   87 | 2022-11-25 17:03:27
+  4 | ajal      | trichur  |   98 | 2022-11-25 17:03:27
+(3 rows)
+
+usty=> SELECT * FROM address
+usty-> =;
+ERROR:  syntax error at or near "="
+LINE 2: =;
+        ^
+usty=> SELECT * FROM address;
+ id | address  | student_id 
+----+----------+------------
+  3 | PALAKKAD |          2
+  4 | CALICUT  |          3
+  5 | TVM      |          3
+  6 | KANNUR   |          4
+(4 rows)
+
+usty=> SELECT S.id,S.name,S.place,S.mark,A.address,A.student_id FROM student AS S FULL OUTER JOIN address AS A ON S.id=A.student_id;
+ id |   name    |  place   | mark | address  | student_id 
+----+-----------+----------+------+----------+------------
+  2 | sethu     | idukki   |   89 | PALAKKAD |          2
+  3 | prashanth | palakkad |   87 | CALICUT  |          3
+  3 | prashanth | palakkad |   87 | TVM      |          3
+  4 | ajal      | trichur  |   98 | KANNUR   |          4
+(4 rows)
+
+usty=> \dt
+        List of relations
+ Schema |  Name   | Type  | Owner 
+--------+---------+-------+-------
+ public | address | table | usty
+ public | student | table | usty
+(2 rows)
+
+usty=> \i cascading.sql
+psql:cascading.sql:16: NOTICE:  drop cascades to constraint address_student_id_fkey on table address
+DROP TABLE
+CREATE TABLE
+ id | name | place | mark | created_at 
+----+------+-------+------+------------
+(0 rows)
+
+COPY 4
+ id |   name    |  place   | mark |     created_at      
+----+-----------+----------+------+---------------------
+  1 | fazil     | nilambur |   67 | 2022-11-25 17:22:44
+  2 | sethu     | idukki   |   89 | 2022-11-25 17:22:44
+  3 | prashanth | palakkad |   87 | 2022-11-25 17:22:44
+  4 | ajal      | trichur  |   98 | 2022-11-25 17:22:44
+(4 rows)
+
+DROP TABLE
+CREATE TABLE
+INSERT 0 6
+ id | address  | student_id 
+----+----------+------------
+  1 | NILAMBUR |          1
+  2 | KOCHI    |          1
+  3 | PALAKKAD |          2
+  4 | CALICUT  |          3
+  5 | TVM      |          3
+  6 | KANNUR   |          4
+(6 rows)
+
+usty=> SELECT student_id FROM address GROUP BY  student_id;
+ student_id 
+------------
+          3
+          4
+          2
+          1
+(4 rows)
+
+usty=> SELECT address FROM address GROUP BY  student_id;
+ERROR:  column "address.address" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: SELECT address FROM address GROUP BY  student_id;
+               ^
+usty=> SELECT COUNT(student_id) FROM address GROUP BY  student_id;
+ count 
+-------
+     2
+     1
+     1
+     2
+(4 rows)
+
+usty=> SELECT student_id,COUNT(student_id) FROM address GROUP BY  student_id;
+ student_id | count 
+------------+-------
+          3 |     2
+          4 |     1
+          2 |     1
+          1 |     2
+(4 rows)
+
+usty=> SELECT address,student_id,COUNT(student_id) FROM address GROUP BY  student_id;
+ERROR:  column "address.address" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: SELECT address,student_id,COUNT(student_id) FROM address GRO...
+               ^
+usty=> SELECT address,student_id,COUNT(student_id) FROM address GROUP BY  student_id,address;
+ address  | student_id | count 
+----------+------------+-------
+ NILAMBUR |          1 |     1
+ CALICUT  |          3 |     1
+ TVM      |          3 |     1
+ KOCHI    |          1 |     1
+ KANNUR   |          4 |     1
+ PALAKKAD |          2 |     1
+(6 rows)
+
+usty=> SELECT address,student_id,COUNT(student_id) FROM address GROUP BY  student_id,!address;
+ERROR:  operator does not exist: ! character varying
+LINE 1: ...OUNT(student_id) FROM address GROUP BY  student_id,!address;
+                                                              ^
+HINT:  No operator matches the given name and argument type. You might need to add an explicit type cast.
+usty=> \i cascading.sql
+psql:cascading.sql:16: NOTICE:  drop cascades to constraint address_student_id_fkey on table address
+DROP TABLE
+CREATE TABLE
+ id | name | place | mark | created_at 
+----+------+-------+------+------------
+(0 rows)
+
+COPY 4
+ id |   name    |  place   | mark |     created_at      
+----+-----------+----------+------+---------------------
+  1 | fazil     | nilambur |   67 | 2022-11-25 17:30:11
+  2 | sethu     | idukki   |   89 | 2022-11-25 17:30:11
+  3 | prashanth | palakkad |   87 | 2022-11-25 17:30:11
+  4 | ajal      | trichur  |   98 | 2022-11-25 17:30:11
+(4 rows)
+
+DROP TABLE
+CREATE TABLE
+INSERT 0 6
+ id | address  | student_id 
+----+----------+------------
+  1 | NILAMBUR |          1
+  2 | KOCHI    |          1
+  3 | PALAKKAD |          2
+  4 | CALICUT  |          3
+  5 | TVM      |          3
+  6 | KANNUR   |          4
+(6 rows)
+
+usty=> 
+usty=> SELECT S.id,S.name,S.place,S.mark,A.address,A.student_id FROM student AS S INNER JOIN address AS A ON S.id=A.student_id;
+ id |   name    |  place   | mark | address  | student_id 
+----+-----------+----------+------+----------+------------
+  1 | fazil     | nilambur |   67 | NILAMBUR |          1
+  1 | fazil     | nilambur |   67 | KOCHI    |          1
+  2 | sethu     | idukki   |   89 | PALAKKAD |          2
+  3 | prashanth | palakkad |   87 | CALICUT  |          3
+  3 | prashanth | palakkad |   87 | TVM      |          3
+  4 | ajal      | trichur  |   98 | KANNUR   |          4
+(6 rows)
+
+usty=> SELECT S.id,S.name,S.place,S.mark,A.address,A.student_id FROM student AS S INNER JOIN address AS A ON S.id=A.student_id GROUP BY A.student_id;
+ERROR:  column "s.id" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: SELECT S.id,S.name,S.place,S.mark,A.address,A.student_id FRO...
+               ^
+usty=> SELECT S.id,S.name,S.place,S.mark,A.address,A.student_id FROM student AS S INNER JOIN address AS A ON S.id=A.student_id ORDER BY S.name;
+ id |   name    |  place   | mark | address  | student_id 
+----+-----------+----------+------+----------+------------
+  4 | ajal      | trichur  |   98 | KANNUR   |          4
+  1 | fazil     | nilambur |   67 | NILAMBUR |          1
+  1 | fazil     | nilambur |   67 | KOCHI    |          1
+  3 | prashanth | palakkad |   87 | CALICUT  |          3
+  3 | prashanth | palakkad |   87 | TVM      |          3
+  2 | sethu     | idukki   |   89 | PALAKKAD |          2
+(6 rows)
+
+usty=> SELECT S.id,S.name,S.place,S.mark,A.address,A.student_id FROM student AS S INNER JOIN address AS A ON S.id=A.student_id WHERE S.id=1;
+ id | name  |  place   | mark | address  | student_id 
+----+-------+----------+------+----------+------------
+  1 | fazil | nilambur |   67 | NILAMBUR |          1
+  1 | fazil | nilambur |   67 | KOCHI    |          1
+(2 rows)
+
+usty=> ^C
+usty=> 
